@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseNotFound,HttpResponseRedirect
+from django.urls import reverse
 # Create your views here.
 
 challenges = {
@@ -17,6 +18,18 @@ challenges = {
   "december":"walk daily"
 }
 
+def index(request):
+  list_months =""
+  months = list(challenges.keys())
+
+  for month in months:
+    capitalize_month = month.capitalize()
+    month_path= reverse("month-challenges",args=[month])
+    list_months += f"<li><a href=\"{month_path}\">{capitalize_month}</a></li>"
+
+  response_data = f"<ul>{list_months}</ul>"
+  return HttpResponse(response_data)
+
 def monthly_challenges_by_num(request,month):
   months = list(challenges.keys())
   
@@ -24,12 +37,16 @@ def monthly_challenges_by_num(request,month):
     return HttpResponseNotFound("Invalid number")
   
   redirect_month = months[month - 1]
-  return HttpResponseRedirect('/challenges/'+ redirect_month)
+    # reverse(name_url,args)
+  redirect_path = reverse("month-challenges",args=[redirect_month])  # /challenges/januvary
+  return HttpResponseRedirect(redirect_path)
+  # return HttpResponseRedirect('/challenges/'+ redirect_month)
 
 
 def monthly_challenges(request,month):
   try:
     challenges_text = challenges[month]
-    return HttpResponse(challenges_text)
+    html_text = f"<h1>{challenges_text}</h1>"
+    return HttpResponse(html_text)
   except:
     return HttpResponseNotFound("This is not a valid months")

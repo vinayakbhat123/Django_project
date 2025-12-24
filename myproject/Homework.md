@@ -22,6 +22,8 @@
 # Step 9 (Optional): Create Django App
   - python manage.py startapp appname 
 
+
+
   # step by step
    - views.py in challenges app created index view
    - created urls.py file in challenges 
@@ -35,3 +37,12 @@
    # Redirects
      - check the month in challenges index key 
      - and using HttResponseRedirect('/challenges/+redirect_month)
+   # Reverse Functions and URLS
+    - use reverse(name_url,args) 
+    - used name url in urls.py in challenges folder 
+       - It eliminate the hard coding urls 
+   # Returning a html
+     - use <h1></h1> in HttpResponse
+   # practicing URLs,Views and Dynamic View Logic
+     - use <ul><li><a></a></li></ul> to display list_months using for loop
+   # Summary
