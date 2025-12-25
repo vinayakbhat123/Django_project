@@ -28,5 +28,6 @@
      
      - How reverse() works (simple)
         - URL name  →  reverse()  →  actual URL
-
+   # Why is name used in Django URLs?    (IMP)
+    -  It allows referencing URLs dynamically using names instead of hard-coded paths   making applications more maintainable, reusable, and safe when URLs change.
 

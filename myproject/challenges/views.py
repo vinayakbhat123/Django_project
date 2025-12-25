@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseNotFound,HttpResponseRedirect
 from django.urls import reverse
-from django.template.loader import render_to_string
+# from django.template.loader import render_to_string
 from django.shortcuts import render
 # Create your views here.
 
@@ -17,20 +17,12 @@ challenges = {
   "september":"go walk",
   "october":"It my birthday months",
   "november":"go cycling",
-  "december":"walk daily"
+  "december":None
 }
 
 def index(request):
-  list_months =""
   months = list(challenges.keys())
-
-  for month in months:
-    capitalize_month = month.capitalize()
-    month_path= reverse("month-challenges",args=[month])
-    list_months += f"<li><a href=\"{month_path}\">{capitalize_month}</a></li>"
-
-  response_data = f"<ul>{list_months}</ul>"
-  return HttpResponse(response_data)
+  return render(request,"challenges/index.html",{"months":months})
 
 def monthly_challenges_by_num(request,month):
   months = list(challenges.keys())
@@ -48,7 +40,10 @@ def monthly_challenges_by_num(request,month):
 def monthly_challenges(request,month):
   try:
     challenges_text = challenges[month]
-    html_text = render_to_string('challenges/challenge.html')
-    return HttpResponse(html_text)
+    return render(request,'challenges/challenge.html',{
+      "text":challenges_text,
+      "month_name":month})
+    # html_text = render_to_string('challenges/challenge.html')
+    # return HttpResponse(html_text)
   except:
     return HttpResponseNotFound("This is not a valid months")

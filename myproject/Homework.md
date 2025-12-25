@@ -59,4 +59,28 @@
      - In settings.py Go to INSTALLED_APPS 
         - put "challenges" 
    # Rendering templates
-    - 
+    - from django.shortcuts import render
+       - used in monthly_challenges() to render challenges/challenge.html file
+   # template language and variable Interpolation
+     - assigning key:value pairs to challenge.html
+     - render dynamic month and months_text in challenge.html 
+   # Filters
+     - {{ variable|title }}  => for capitalize()   => 
+    -   {{}} =>  refer to openvariable and close variable
+    -  {% %} => refer to block 
+     - {# #} => Comment
+   # 39> Django visual Studio code extension
+     - add Django extension
+   # 40> tags and the "for" tags
+    - created index.html and used {% for in %}{% endfor %} to render months
+    - used  <ul><li><a href={{month}}>{{month|title}}</a></li></ul>
+   # 41> URL tag for dynamic urls 
+     <!-- - used  <li><a href={% url "month-challenges" month=month %}>{{month|title}}</a></li>  -->
+     - referencing URL-Name for better use eliminating hardcoded URLPath
+   # 42> The "if" tag for Conditional Content
+      - {% if  %}{% endif %} to display {{text}} dynamically
+   # 43> Template Inheritance
+    - django_projects > myprojects > templates > base.html
+      - use {% block Name %} {% endblock %}
+      - use {% extends Name} in index.html
+      - In settings.py inside DIR [BASE_DIR / "templates" ] 
