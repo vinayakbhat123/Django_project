@@ -84,3 +84,7 @@
       - use {% block Name %} {% endblock %}
       - use {% extends Name} in index.html
       - In settings.py inside DIR [BASE_DIR / "templates" ] 
+   # 44 > Exercise
+      - use block in challenge.html 
+   # 45> Including partial Template Snippets
+     -  created includes Folder> header.html {% include "challenges/includes/header.html" %}
